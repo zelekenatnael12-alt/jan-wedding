@@ -25,8 +25,8 @@ const JAN_CONFIG = {
 
   // ── Backend Configuration (Supabase API keys) ──────────────────────
   backend: {
-    supabaseUrl: "",             // e.g. "https://xyz.supabase.co"
-    supabaseKey: ""              // e.g. "eyJhbGciOi..."
+    supabaseUrl: "https://jtimqxjyysnlbuahijbp.supabase.co",
+    supabaseKey: "sb_publishable_akX0YXMBqzUnsFJ3BCdP-g_ZGMLp-7_"
   },
 
   // ── Meal Options ──────────────────────────────────────────────────
