@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>QR Code Generator — JAN Wedding</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔲</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/qr.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="nav scrolled" role="navigation" aria-label="Main">
+    <a href="index.html" class="nav-logo">JAN</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="dashboard.html">← Back to Dashboard</a></li>
+      <li><a href="index.html">Guest Portal</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Page Header ─────────────────────────────────────────────── -->
+  <header class="page-header" aria-labelledby="qr-page-title">
+    <div class="section-label">Creator Utility</div>
+    <h1 id="qr-page-title">QR Code Generator</h1>
+    <div class="divider"><div class="divider-diamond"></div></div>
+    <p style="max-width:500px;margin:0 auto;color:var(--white-dim);font-size:0.9rem;">
+      Generate a branded QR code for your invitations or table signage. Guests can scan to instantly share memories or view your registry.
+    </p>
+  </header>
+
+  <!-- ── QR Content ──────────────────────────────────────────────── -->
+  <main class="qr-wrapper">
+    <div class="qr-layout">
+
+      <!-- Left Column: Live Preview Card -->
+      <section class="qr-preview-card" aria-label="QR Code Preview">
+        <div class="qr-frame">
+          <div class="qr-corner tl"></div>
+          <div class="qr-corner tr"></div>
+          <div class="qr-corner bl"></div>
+          <div class="qr-corner br"></div>
+          
+          <img id="qr-img" src="" alt="Branded QR Code" style="display: none;" />
+          
+          <div id="qr-loading" class="qr-loading">
+            <div class="qr-spinner"></div>
+            <span>Generating QR code...</span>
+          </div>
+        </div>
+
+        <div class="qr-label-preview">
+          <div class="qr-couple-preview" id="qr-couple-preview">Alex &amp; Jordan</div>
+          <div class="qr-tagline-preview" id="qr-tagline-preview">Scan to celebrate with us</div>
+        </div>
+      </section>
+
+      <!-- Right Column: Settings & Print card -->
+      <section class="qr-options" aria-label="Generator Settings">
+        
+        <!-- Target Link input -->
+        <div class="qr-option-card">
+          <h2 class="qr-option-title">1. Target Destination</h2>
+          <p style="font-size: 0.8rem; color: var(--muted); margin-top: -0.5rem; margin-bottom: 0.5rem;">
+            Choose where this QR code points. Usually your main landing page.
+          </p>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="qr-url">Destination URL</label>
+            <input class="form-input" type="url" id="qr-url" placeholder="https://..." required />
+          </div>
+        </div>
+
+        <!-- Size Selection -->
+        <div class="qr-option-card">
+          <h2 class="qr-option-title">2. Download Resolution</h2>
+          <p style="font-size: 0.8rem; color: var(--muted); margin-top: -0.5rem; margin-bottom: 0.5rem;">
+            Higher resolutions are recommended for printed signage or invitations.
+          </p>
+          <div class="qr-size-grid">
+            <button class="size-btn" data-size="150">Small (150px)</button>
+            <button class="size-btn active" data-size="300">Medium (300px)</button>
+            <button class="size-btn" data-size="500">Large (500px)</button>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="qr-actions">
+          <button id="download-btn" class="btn btn-gold">📥 Download QR Code (.png)</button>
+          <button id="copy-link-btn" class="btn btn-outline">🔗 Copy Link</button>
+        </div>
+
+        <!-- Print Card Preview -->
+        <div class="print-card-preview">
+          <h3 class="print-card-title">Invitation / Table Card Preview</h3>
+          <div class="print-preview-inner">
+            <div class="print-preview-names" id="print-names">Alex &amp; Jordan</div>
+            <div class="print-preview-sub">Scan to Share Memories</div>
+            <img id="print-qr-img" class="print-preview-qr" src="" alt="Print layout QR preview" />
+            <div class="print-preview-url" id="print-url">index.html</div>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--muted); margin-top: 1rem; line-height: 1.4;">
+            This layout shows how you can design table display cards with the generated QR code. Use the downloaded high-res PNG for layout printing.
+          </p>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">JAN</div>
+    <p class="footer-copy">Made with love &nbsp;·&nbsp; <span data-couple-names>Alex &amp; Jordan</span></p>
+  </footer>
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/qr.js"></script>
+</body>
+</html>

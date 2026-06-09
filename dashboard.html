@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Dashboard — JAN Wedding</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <!-- ── PIN Lock Screen ─────────────────────────────────────────── -->
+  <div id="pin-screen" class="pin-screen" role="dialog" aria-label="Enter dashboard PIN">
+    <div class="pin-logo">JAN</div>
+    <div>
+      <h1 class="pin-title">Couple's Dashboard</h1>
+      <p class="pin-subtitle">Enter your 4-digit PIN to continue</p>
+    </div>
+
+    <!-- PIN Dots -->
+    <div class="pin-dots" aria-label="PIN entry progress" role="status">
+      <div class="pin-dot" aria-hidden="true"></div>
+      <div class="pin-dot" aria-hidden="true"></div>
+      <div class="pin-dot" aria-hidden="true"></div>
+      <div class="pin-dot" aria-hidden="true"></div>
+    </div>
+
+    <!-- Keypad -->
+    <div class="pin-keypad" role="group" aria-label="Number keypad">
+      <button class="pin-key" data-value="1" aria-label="1">1</button>
+      <button class="pin-key" data-value="2" aria-label="2">2</button>
+      <button class="pin-key" data-value="3" aria-label="3">3</button>
+      <button class="pin-key" data-value="4" aria-label="4">4</button>
+      <button class="pin-key" data-value="5" aria-label="5">5</button>
+      <button class="pin-key" data-value="6" aria-label="6">6</button>
+      <button class="pin-key" data-value="7" aria-label="7">7</button>
+      <button class="pin-key" data-value="8" aria-label="8">8</button>
+      <button class="pin-key" data-value="9" aria-label="9">9</button>
+      <button class="pin-key clear" data-value="clear" aria-label="Delete">Del</button>
+      <button class="pin-key" data-value="0" aria-label="0">0</button>
+      <div></div><!-- spacer -->
+    </div>
+
+    <p style="font-size:0.72rem;color:var(--muted);text-align:center;">
+      Default PIN is <strong style="color:var(--gold)">1234</strong> — change in <code style="color:var(--white-dim)">js/config.js</code>
+    </p>
+  </div>
+
+  <!-- ── Dashboard ───────────────────────────────────────────────── -->
+  <div id="dashboard" class="dashboard">
+
+    <!-- Nav -->
+    <nav class="nav scrolled" role="navigation" aria-label="Main">
+      <a href="index.html" class="nav-logo">JAN</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">← Guest Portal</a></li>
+        <li><a href="upload.html">Upload</a></li>
+        <li><a href="registry.html">Registry</a></li>
+        <li><a href="guestbook.html">Guestbook</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Header -->
+    <div class="dash-header">
+      <div class="dash-header-left">
+        <div class="section-label">Private Access</div>
+        <h1 class="dash-title">
+          Dashboard —
+          <span class="dash-couple" data-couple-names>Alex &amp; Jordan</span>
+        </h1>
+      </div>
+      <div class="dash-actions">
+        <a href="qr.html" class="btn btn-outline" style="font-size:0.72rem;">🔲 QR Generator</a>
+        <button class="btn btn-ghost" id="clear-data-btn" style="font-size:0.72rem;">🗑 Clear Demo Data</button>
+        <button class="btn btn-ghost" id="logout-btn" style="font-size:0.72rem;">🔒 Lock</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="dash-stats">
+      <div class="stat-card fade-up">
+        <div class="stat-card-icon">📤</div>
+        <div class="stat-card-value" id="stat-uploads">0</div>
+        <div class="stat-card-label">Memory Submissions</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-card-icon">🖼️</div>
+        <div class="stat-card-value" id="stat-files">0</div>
+        <div class="stat-card-label">Files Received</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-card-icon">💌</div>
+        <div class="stat-card-value" id="stat-rsvp-attending">0</div>
+        <div class="stat-card-label">Attending Guests</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-card-icon">🥀</div>
+        <div class="stat-card-value" id="stat-rsvp-declined">0</div>
+        <div class="stat-card-label">Declined RSVPs</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-card-icon">🎁</div>
+        <div class="stat-card-value" id="stat-reservations">0</div>
+        <div class="stat-card-label">Gifts Reserved</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-card-icon">🎤</div>
+        <div class="stat-card-value" id="stat-messages">0</div>
+        <div class="stat-card-label">Voice Messages</div>
+      </div>
+    </div>
+
+    <!-- Memory Submissions -->
+    <div class="dash-section">
+      <div class="dash-section-header">
+        <h2 class="dash-section-title">📸 Memory Submissions</h2>
+        <span class="dash-section-count" id="uploads-count">0 submissions</span>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" role="table" aria-label="Memory submissions">
+          <thead>
+            <tr>
+              <th>Guest Name</th>
+              <th>Files Preview</th>
+              <th>Message</th>
+              <th>Submitted</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="uploads-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RSVP Responses -->
+    <div class="dash-section">
+      <div class="dash-section-header">
+        <h2 class="dash-section-title">💌 RSVP Responses</h2>
+        <span class="dash-section-count" id="rsvp-count">0 responses</span>
+      </div>
+      
+      <!-- Meal preference bars -->
+      <div class="meal-preferences-wrap fade-up" style="margin-bottom: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--gold); margin-bottom: 1rem;">Meal Preference Breakdown</h3>
+        <div class="meal-bars-grid" id="meal-bars-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem;">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="data-table-wrap">
+        <table class="data-table" role="table" aria-label="RSVP responses">
+          <thead>
+            <tr>
+              <th>Primary Guest</th>
+              <th>Attendance</th>
+              <th>Party Size</th>
+              <th>Meal Choices</th>
+              <th>Dietary Notes</th>
+              <th>Note to Couple</th>
+              <th>Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="rsvp-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Registry Reservations -->
+    <div class="dash-section">
+      <div class="dash-section-header">
+        <h2 class="dash-section-title">🎁 Registry Reservations</h2>
+        <span class="dash-section-count" id="reservations-count">0 reserved</span>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" role="table" aria-label="Registry reservations">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Gift</th>
+              <th>Reserved By</th>
+              <th>Category &amp; Value</th>
+            </tr>
+          </thead>
+          <tbody id="reservations-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Voice Messages -->
+    <div class="dash-section">
+      <div class="dash-section-header">
+        <h2 class="dash-section-title">🎤 Voice Guestbook</h2>
+        <span class="dash-section-count" id="messages-count">0 messages</span>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table" role="table" aria-label="Voice guestbook messages">
+          <thead>
+            <tr>
+              <th>Guest Name</th>
+              <th>Message</th>
+              <th>Recorded</th>
+            </tr>
+          </thead>
+          <tbody id="messages-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /dashboard -->
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Please respond to our wedding invitation. Let us know if you can make it." />
+  <title>RSVP — JAN Wedding</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/rsvp.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main">
+    <a href="index.html" class="nav-logo">JAN</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rsvp.html" class="active">RSVP</a></li>
+      <li><a href="upload.html">Share Memories</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Page Header ─────────────────────────────────────────────── -->
+  <header class="page-header" aria-labelledby="rsvp-title">
+    <div class="section-label">Response</div>
+    <h1 id="rsvp-title">RSVP Online</h1>
+    <div class="divider"><div class="divider-diamond"></div></div>
+    <p style="max-width:480px;margin:0 auto;color:var(--white-dim);font-size:0.9rem;">
+      We look forward to celebrating with you! Please submit your response below so we can finalize our plans.
+    </p>
+  </header>
+
+  <!-- ── Main RSVP Area ───────────────────────────────────────────── -->
+  <main>
+    <!-- RSVP Form View -->
+    <div id="rsvp-view" class="rsvp-container">
+      <form id="rsvp-form" class="rsvp-form fade-up" novalidate>
+        
+        <!-- Step 1: Attendance selection -->
+        <div class="form-group">
+          <label class="form-label" style="text-align: center; font-size: 1.1rem; margin-bottom: 1rem;">
+            Will you join us to celebrate? <span aria-hidden="true" style="color:var(--gold)">*</span>
+          </label>
+          <div class="attendance-options">
+            <label class="attendance-card" for="accepts">
+              <input type="radio" id="accepts" name="attendance" value="accept" checked />
+              <div class="attendance-card-content">
+                <span class="attendance-emoji">🥂</span>
+                <span class="attendance-status">Joyfully Accepts</span>
+              </div>
+            </label>
+            <label class="attendance-card" for="declines">
+              <input type="radio" id="declines" name="attendance" value="decline" />
+              <div class="attendance-card-content">
+                <span class="attendance-emoji">🥀</span>
+                <span class="attendance-status">Regretfully Declines</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="divider" style="margin: 2rem 0 1.5rem;"><div class="divider-diamond" style="width:6px;height:6px;"></div></div>
+
+        <!-- Primary Guest Details -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="primary-name">
+              Your Full Name <span aria-hidden="true" style="color:var(--gold)">*</span>
+            </label>
+            <input class="form-input" type="text" id="primary-name" name="primary-name"
+                   placeholder="e.g. Sarah Jenkins" autocomplete="name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="guest-contact">Email or Phone (optional)</label>
+            <input class="form-input" type="text" id="guest-contact" name="guest-contact"
+                   placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <!-- Conditional Guest 1 choices (hidden if Decline is selected) -->
+        <div id="acceptance-fields">
+          <div class="form-row">
+            <!-- Party size dropdown -->
+            <div class="form-group">
+              <label class="form-label" for="party-size">Total in Your Party</label>
+              <select class="form-select" id="party-size" name="party-size">
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+              </select>
+            </div>
+            
+            <!-- Guest 1 Meal choice -->
+            <div class="form-group" id="guest1-meal-group">
+              <label class="form-label" for="guest1-meal">Meal Preference</label>
+              <select class="form-select" id="guest1-meal" name="guest1-meal">
+                <!-- Rendered dynamically -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Guest 2 Details (Conditional on party-size === "2") -->
+          <div id="guest2-fields" class="guest2-fields" style="display:none;">
+            <h3 class="rsvp-subheading">Second Guest Details</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="guest2-name">Guest 2 Name <span aria-hidden="true" style="color:var(--gold)">*</span></label>
+                <input class="form-input" type="text" id="guest2-name" name="guest2-name"
+                       placeholder="e.g. Michael Jenkins" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="guest2-meal">Guest 2 Meal Preference</label>
+                <select class="form-select" id="guest2-meal" name="guest2-meal">
+                  <!-- Rendered dynamically -->
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dietary requirements -->
+          <div class="form-group">
+            <label class="form-label" for="dietary-notes">Dietary Restrictions or Allergies (optional)</label>
+            <textarea class="form-textarea" id="dietary-notes" name="dietary-notes"
+                      placeholder="e.g. Gluten-free, peanut allergy, none..."></textarea>
+          </div>
+        </div>
+
+        <!-- warm note (optional) -->
+        <div class="form-group">
+          <label class="form-label" for="congrats-note">Message to the Couple (optional)</label>
+          <textarea class="form-textarea" id="congrats-note" name="congrats-note"
+                    placeholder="Leave a short note or wishes for the couple..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="text-align: center; margin-top: 2rem;">
+          <button type="submit" class="btn btn-gold" id="submit-rsvp-btn" style="min-width: 200px;">
+            Submit RSVP
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Success Screen (Hidden by default) -->
+    <div class="success-screen" id="rsvp-success-screen" role="status" aria-live="polite">
+      <div class="success-icon" aria-hidden="true">🥂</div>
+      <h2 class="success-title">Thank you, <span id="success-primary-name"></span>!</h2>
+      <p class="success-msg" id="success-msg-text">
+        Your response has been saved. We are absolutely thrilled to celebrate with you!
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
+        <a href="index.html" class="btn btn-gold">Back to Home</a>
+        <a href="upload.html" class="btn btn-outline">Share Memories</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">JAN</div>
+    <p class="footer-copy">Made with love &nbsp;·&nbsp; <span data-couple-names>Alex &amp; Jordan</span></p>
+  </footer>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/rsvp.js"></script>
+</body>
+</html>

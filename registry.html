@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse and reserve gifts from our wedding registry. Each gift can only be reserved once." />
+  <title>Gift Registry — JAN Wedding</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/registry.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main">
+    <a href="index.html" class="nav-logo">JAN</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="upload.html">Share Memories</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html" class="active">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Page Header ─────────────────────────────────────────────── -->
+  <header class="page-header" aria-labelledby="registry-title">
+    <div class="section-label">Gift Registry</div>
+    <h1 id="registry-title">Our Registry</h1>
+    <div class="divider"><div class="divider-diamond"></div></div>
+    <p style="max-width:500px;margin:0 auto;color:var(--white-dim);font-size:0.9rem;">
+      Browse our curated selection of gifts. Reserve an item online — no duplicates, no stress. Your generosity means everything to us.
+    </p>
+  </header>
+
+  <!-- ── Registry Content ─────────────────────────────────────────── -->
+  <main>
+    <div class="registry-wrapper">
+
+      <!-- Stats Bar -->
+      <div class="registry-stats fade-in" role="status" aria-label="Registry summary">
+        <div class="stat-item">
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-label">Total Gifts</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-available">—</div>
+          <div class="stat-label">Available</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-reserved">—</div>
+          <div class="stat-label">Reserved</div>
+        </div>
+      </div>
+
+      <!-- Controls: Search + Filters -->
+      <div class="registry-controls fade-up" role="search" aria-label="Filter registry">
+        <div class="search-wrap">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input class="form-input" type="search" id="registry-search"
+                 placeholder="Search gifts…" aria-label="Search registry" />
+        </div>
+        <div class="category-tabs" role="tablist" aria-label="Gift categories">
+          <button class="cat-tab active" data-category="all"         role="tab" aria-selected="true">All</button>
+          <button class="cat-tab"        data-category="kitchen"     role="tab" aria-selected="false">Kitchen</button>
+          <button class="cat-tab"        data-category="experiences" role="tab" aria-selected="false">Experiences</button>
+          <button class="cat-tab"        data-category="home"        role="tab" aria-selected="false">Home</button>
+          <button class="cat-tab"        data-category="travel"      role="tab" aria-selected="false">Travel</button>
+        </div>
+      </div>
+
+      <!-- Gift Grid -->
+      <div class="registry-grid" id="registry-grid" role="list" aria-label="Gift registry items">
+        <!-- Rendered by registry.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── Reserve Modal ────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true"
+       aria-labelledby="modal-title" aria-describedby="modal-desc">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+
+      <h2 class="modal-title" id="modal-title">Reserve This Gift</h2>
+      <p class="modal-subtitle" id="modal-desc">Enter your name so the couple knows it's from you.</p>
+
+      <!-- Gift Preview -->
+      <div class="modal-gift-preview">
+        <div class="modal-gift-emoji" id="modal-gift-emoji" aria-hidden="true">🎁</div>
+        <div>
+          <div class="modal-gift-name" id="modal-gift-name">Gift Name</div>
+          <div class="modal-gift-price" id="modal-gift-price">$0</div>
+        </div>
+      </div>
+
+      <!-- Name Input -->
+      <div class="form-group">
+        <label class="form-label" for="reserver-name">
+          Your Name <span aria-hidden="true" style="color:var(--gold)">*</span>
+        </label>
+        <input class="form-input" type="text" id="reserver-name"
+               placeholder="e.g. Sarah & Mike" autocomplete="name" />
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cancel-reserve">Cancel</button>
+        <button class="btn btn-gold"  id="confirm-reserve">Confirm Reservation →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">JAN</div>
+    <p class="footer-copy">Made with love &nbsp;·&nbsp; <span data-couple-names>Alex &amp; Jordan</span></p>
+  </footer>
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/registry.js"></script>
+</body>
+</html>

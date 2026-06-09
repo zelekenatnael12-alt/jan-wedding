@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════════════════════════════
+   JAN — RSVP Portal Styles
+   ═══════════════════════════════════════════════════════════════════ */
+
+.rsvp-container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 1.25rem 6rem;
+}
+
+.rsvp-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .rsvp-form {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* ── Attendance Cards ────────────────────────────────────────────── */
+.attendance-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .attendance-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+.attendance-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.attendance-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.attendance-card-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  transition: all var(--transition);
+}
+
+.attendance-card:hover .attendance-card-content {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+/* Checked state */
+.attendance-card input[type="radio"]:checked + .attendance-card-content {
+  border-color: var(--gold);
+  background: var(--gold-glow);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+}
+
+.attendance-emoji {
+  font-size: 2rem;
+}
+
+.attendance-status {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* ── Secondary Section ───────────────────────────────────────────── */
+.rsvp-subheading {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.guest2-fields {
+  background: rgba(201, 168, 76, 0.03);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  animation: slideDown 0.35s ease forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

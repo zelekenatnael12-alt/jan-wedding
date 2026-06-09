@@ -1,0 +1,420 @@
+/* ═══════════════════════════════════════════════════════════════════
+   JAN — Couple's Dashboard Styles
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── PIN Lock Screen ─────────────────────────────────────────────── */
+.pin-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.pin-logo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.pin-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--white);
+  text-align: center;
+}
+
+.pin-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: -1rem;
+}
+
+.pin-dots {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.pin-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border-hover);
+  background: transparent;
+  transition: all 0.2s;
+}
+
+.pin-dot.filled {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.pin-dot.error {
+  border-color: #eb5757;
+  background: rgba(235, 87, 87, 0.3);
+  animation: shake 0.4s ease;
+}
+
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  gap: 0.75rem;
+}
+
+.pin-key {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pin-key:hover {
+  background: var(--card-hover);
+  border-color: var(--border-hover);
+  color: var(--gold);
+}
+
+.pin-key:active { transform: scale(0.93); }
+
+.pin-key.clear {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Dashboard Layout ────────────────────────────────────────────── */
+.dashboard {
+  display: none;
+  min-height: 100vh;
+}
+
+.dashboard.visible { display: block; }
+
+.dash-header {
+  padding: 6rem 2rem 3rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dash-header-left .section-label { margin-bottom: 0.4rem; }
+
+.dash-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.dash-couple {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.dash-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ── Stat Cards ──────────────────────────────────────────────────── */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 2.5rem auto 0;
+  padding: 0 2rem;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.stat-card:hover::before { transform: scaleX(1); }
+
+.stat-card-icon { font-size: 1.5rem; }
+
+.stat-card-value {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  color: var(--white);
+  line-height: 1;
+}
+
+.stat-card-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Dashboard Sections ──────────────────────────────────────────── */
+.dash-section {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding: 0 2rem;
+}
+
+.dash-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dash-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--white);
+}
+
+.dash-section-count {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Data Table ──────────────────────────────────────────────────── */
+.data-table-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table thead {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 1rem 1.25rem;
+  color: var(--white-dim);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+
+.data-table tbody tr {
+  transition: background var(--transition);
+}
+
+.data-table tbody tr:hover {
+  background: var(--card-hover);
+}
+
+.data-table .td-name {
+  font-weight: 500;
+  color: var(--white);
+}
+
+.data-table .td-meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.data-table .td-count {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.data-table .td-time {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Empty State ─────────────────────────────────────────────────── */
+.empty-state {
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+  opacity: 0.4;
+}
+
+.empty-state-text {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ── Reserved Gift Row ───────────────────────────────────────────── */
+.td-gift-emoji { font-size: 1.5rem; }
+
+.td-reserved-by {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ── Thumbnails & Actions ────────────────────────────────────────── */
+.dash-thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: zoom-in;
+  margin-right: 0.25rem;
+}
+
+.dash-thumb:hover {
+  transform: scale(3.5);
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-color: var(--gold);
+}
+
+.action-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-action {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  transition: all var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid;
+}
+
+.btn-action.approve {
+  color: #6fcf97;
+  border-color: rgba(111, 207, 151, 0.4);
+}
+
+.btn-action.approve:hover {
+  background: rgba(111, 207, 151, 0.1);
+  border-color: #6fcf97;
+}
+
+.btn-action.reject {
+  color: #eb5757;
+  border-color: rgba(235, 87, 87, 0.4);
+}
+
+.btn-action.reject:hover {
+  background: rgba(235, 87, 87, 0.1);
+  border-color: #eb5757;
+}
+
+/* ── Meal Preference Charts ──────────────────────────────────────── */
+.meal-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.meal-bar-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--white-dim);
+}
+
+.meal-bar-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.meal-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 0%;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+.dash-section { padding-bottom: 4rem; }
+
+@media (max-width: 768px) {
+  .dash-header { padding: 5rem 1.25rem 2rem; }
+  .dash-stats   { padding: 0 1.25rem; }
+  .dash-section { padding: 0 1.25rem 3rem; }
+  .data-table-wrap { overflow-x: auto; }
+}

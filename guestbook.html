@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Leave a voice message for the couple. Record your heartfelt wishes in the audio guestbook." />
+  <title>Audio Guestbook — JAN Wedding</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/guestbook.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main">
+    <a href="index.html" class="nav-logo">JAN</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="upload.html">Share Memories</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html" class="active">Guestbook</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Page Header ─────────────────────────────────────────────── -->
+  <header class="page-header" aria-labelledby="gb-title">
+    <div class="section-label">Audio Guestbook</div>
+    <h1 id="gb-title">Leave a Voice Message</h1>
+    <div class="divider"><div class="divider-diamond"></div></div>
+    <p style="max-width:480px;margin:0 auto;color:var(--white-dim);font-size:0.9rem;">
+      Record a heartfelt message for the couple. Your voice is the most personal gift you can give.
+    </p>
+  </header>
+
+  <!-- ── Main Content ────────────────────────────────────────────── -->
+  <main>
+    <div class="guestbook-wrapper">
+
+      <!-- Recorder Card -->
+      <div class="recorder-card fade-up">
+
+        <!-- Waveform -->
+        <div class="waveform" id="waveform" aria-hidden="true">
+          <div class="wave-bar" style="--h:8px"></div>
+          <div class="wave-bar" style="--h:16px"></div>
+          <div class="wave-bar" style="--h:24px"></div>
+          <div class="wave-bar" style="--h:32px"></div>
+          <div class="wave-bar" style="--h:20px"></div>
+          <div class="wave-bar" style="--h:28px"></div>
+          <div class="wave-bar" style="--h:14px"></div>
+          <div class="wave-bar" style="--h:22px"></div>
+          <div class="wave-bar" style="--h:36px"></div>
+          <div class="wave-bar" style="--h:18px"></div>
+          <div class="wave-bar" style="--h:26px"></div>
+          <div class="wave-bar" style="--h:10px"></div>
+        </div>
+
+        <!-- Recording Timer -->
+        <div class="rec-timer" id="rec-timer" role="timer" aria-live="polite">00:00</div>
+
+        <!-- Mic Button -->
+        <div class="mic-btn-wrap">
+          <div class="mic-ring" aria-hidden="true"></div>
+          <div class="mic-ring" aria-hidden="true"></div>
+          <div class="mic-ring" aria-hidden="true"></div>
+          <button class="mic-btn" id="mic-btn" aria-label="Start recording">
+            <span id="mic-icon">🎤</span>
+          </button>
+        </div>
+
+        <p class="mic-status" id="mic-status">Tap the microphone to start recording</p>
+
+        <!-- Playback Area -->
+        <div class="playback-area" id="playback-area" role="region" aria-label="Recording preview">
+          <span class="playback-label">Your recording</span>
+          <audio id="audio-preview" controls aria-label="Recorded voice message"></audio>
+          <button class="btn btn-ghost discard-btn" id="discard-btn">✕ Discard</button>
+        </div>
+
+      </div>
+
+      <!-- Guest Form -->
+      <form id="gb-form" novalidate>
+        <div class="guestbook-form fade-up">
+          <div class="form-group">
+            <label class="form-label" for="gb-name">
+              Your Name <span aria-hidden="true" style="color:var(--gold)">*</span>
+            </label>
+            <input class="form-input" type="text" id="gb-name" name="gb-name"
+                   placeholder="e.g. Uncle Robert" autocomplete="name" required />
+          </div>
+        </div>
+        <div class="gb-submit-bar fade-up">
+          <p style="font-size:0.78rem;color:var(--muted);flex:1;">
+            Max recording length: 2 minutes. Messages are stored privately.
+          </p>
+          <button type="submit" class="btn btn-gold" id="gb-submit">
+            Submit Message →
+          </button>
+        </div>
+      </form>
+
+      <!-- Messages List -->
+      <div class="messages-section">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem;">
+          <h2 style="font-family:var(--font-serif);font-size:1.6rem;color:var(--white);">
+            Guest Messages
+          </h2>
+          <div class="divider" style="flex:1;margin:0 1rem;"></div>
+        </div>
+
+        <div id="messages-list" aria-label="Voice guestbook messages" role="list"></div>
+
+        <div id="empty-msg" class="no-results" style="display:none;">
+          <span class="no-results-icon">🎤</span>
+          <p>No messages yet — be the first to leave one!</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">JAN</div>
+    <p class="footer-copy">Made with love &nbsp;·&nbsp; <span data-couple-names>Alex &amp; Jordan</span></p>
+  </footer>
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/guestbook.js"></script>
+</body>
+</html>

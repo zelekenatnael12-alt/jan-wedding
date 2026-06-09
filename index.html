@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Welcome to our wedding celebration. Share memories and explore our registry." />
+  <title>JAN Wedding</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main">
+    <a href="index.html" class="nav-logo">JAN</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="upload.html">Share Memories</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg" role="img" aria-label="Elegant wedding ambiance"></div>
+    <div class="hero-overlay"></div>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">You're Invited</div>
+
+      <h1 class="hero-names" data-couple-names>Alex &amp; Jordan</h1>
+
+      <div class="hero-date" data-wedding-date-display>Friday, January 15, 2027</div>
+
+      <div class="hero-divider" aria-hidden="true">
+        <div class="hero-divider-line"></div>
+        <div class="hero-divider-diamond"></div>
+        <div class="hero-divider-line right"></div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="upload.html" class="btn btn-gold" id="cta-upload">Share a Memory</a>
+        <a href="registry.html" class="btn btn-outline" id="cta-registry">View Registry</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── Countdown ───────────────────────────────────────────────── -->
+  <section class="countdown-section" aria-label="Countdown to the wedding">
+    <div class="countdown-label">Counting Down To</div>
+    <div class="countdown-grid">
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-days">--</div>
+        <div class="countdown-unit-label">Days</div>
+      </div>
+      <div class="countdown-separator" aria-hidden="true">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-hours">--</div>
+        <div class="countdown-unit-label">Hours</div>
+      </div>
+      <div class="countdown-separator" aria-hidden="true">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-minutes">--</div>
+        <div class="countdown-unit-label">Minutes</div>
+      </div>
+      <div class="countdown-separator" aria-hidden="true">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-seconds">--</div>
+        <div class="countdown-unit-label">Seconds</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section class="features-section" aria-labelledby="features-heading">
+    <div class="features-header">
+      <div class="section-label">What You Can Do</div>
+      <h2 id="features-heading">Celebrate With Us</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+      <p data-welcome style="max-width:520px;margin:0 auto;">We're so glad you're here. Share your love, your memories, and your joy with us.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Share Memories Card -->
+      <a href="upload.html" class="feature-card fade-up" id="feature-upload" aria-label="Share a memory with photos or videos">
+        <div class="feature-icon">📸</div>
+        <div>
+          <h3 class="feature-title">Share a Memory</h3>
+          <p class="feature-desc">Upload your favourite photos and videos from the celebration. Your captured moments become part of our shared story.</p>
+        </div>
+        <div class="feature-link">Upload Now <span aria-hidden="true">→</span></div>
+      </a>
+
+      <!-- Registry Card -->
+      <a href="registry.html" class="feature-card fade-up" id="feature-registry" aria-label="Browse the gift registry">
+        <div class="feature-icon">🎁</div>
+        <div>
+          <h3 class="feature-title">Gift Registry</h3>
+          <p class="feature-desc">Browse our carefully curated registry. Reserve a gift online so there's no duplication — and your kindness is felt from afar.</p>
+        </div>
+        <div class="feature-link">Browse Gifts <span aria-hidden="true">→</span></div>
+      </a>
+
+      <!-- Details Card -->
+      <a href="#details" class="feature-card fade-up" id="feature-details" aria-label="View event details">
+        <div class="feature-icon">📍</div>
+        <div>
+          <h3 class="feature-title">Event Details</h3>
+          <p class="feature-desc">Everything you need to know — venue, timing, and how to make the most of the day alongside us.</p>
+        </div>
+        <div class="feature-link">View Details <span aria-hidden="true">→</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Event Details ────────────────────────────────────────────── -->
+  <section class="details-section" id="details" aria-labelledby="details-heading">
+    <div class="details-inner">
+      <div class="section-label">The Day</div>
+      <h2 id="details-heading" class="fade-in">Event Details</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+
+      <div class="details-grid">
+        <div class="detail-item fade-up">
+          <div class="detail-icon">📅</div>
+          <div class="detail-label">Date</div>
+          <div class="detail-value" data-wedding-date-display>January 15, 2027</div>
+        </div>
+        <div class="detail-item fade-up">
+          <div class="detail-icon">📍</div>
+          <div class="detail-label">Venue</div>
+          <div class="detail-value" data-venue>The Grand Ballroom</div>
+          <div class="detail-sub" data-venue-address>123 Luxury Lane, New York</div>
+        </div>
+        <div class="detail-item fade-up">
+          <div class="detail-icon">🏷️</div>
+          <div class="detail-label">Hashtag</div>
+          <div class="detail-value" data-hashtag>#AlexAndJordan2027</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Hashtag Banner ───────────────────────────────────────────── -->
+  <section class="hashtag-banner fade-in" aria-label="Wedding hashtag">
+    <p class="hashtag-text" data-hashtag>#AlexAndJordan2027</p>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">JAN</div>
+    <p class="footer-copy">Crafted with love &nbsp;·&nbsp; <span data-couple-names>Alex &amp; Jordan</span></p>
+  </footer>
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initParticles('particles-canvas');
+    });
+  </script>
+</body>
+</html>

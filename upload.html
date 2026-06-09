@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Share your favourite photos and videos from the celebration with the couple." />
+  <title>Share Memories — JAN Wedding</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📸</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/upload.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main">
+    <a href="index.html" class="nav-logo">JAN</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rsvp.html">RSVP</a></li>
+      <li><a href="upload.html" class="active">Share Memories</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Page Header ─────────────────────────────────────────────── -->
+  <header class="page-header" aria-labelledby="page-title">
+    <div class="section-label">Memory Sharing</div>
+    <h1 id="page-title">Share a Memory</h1>
+    <div class="divider"><div class="divider-diamond"></div></div>
+    <p style="max-width:480px;margin:0 auto;color:var(--white-dim);font-size:0.9rem;">
+      Upload your photos and videos from the day. Every moment you've captured is a gift we'll treasure forever.
+    </p>
+  </header>
+
+  <!-- ── Main Upload Area ─────────────────────────────────────────── -->
+  <main>
+    <!-- Upload View -->
+    <div id="upload-view">
+      <div class="upload-wrapper">
+
+        <!-- Drop Zone -->
+        <div class="drop-zone fade-up" id="drop-zone" role="button" tabindex="0"
+             aria-label="Drag and drop photos or videos, or click to browse">
+          <input type="file" id="file-input" accept="image/*,video/*" multiple aria-hidden="true" />
+          <span class="drop-icon" aria-hidden="true">📷</span>
+          <div class="drop-title">Drop your photos &amp; videos here</div>
+          <p class="drop-subtitle">or click anywhere in this box to browse your files</p>
+          <div class="drop-accept">JPG · PNG · GIF · MP4 · MOV · WEBM</div>
+        </div>
+
+        <!-- Preview Section -->
+        <div id="preview-section" style="display:none;" class="preview-section">
+          <div class="preview-header">
+            <span id="preview-count" class="preview-count">0 files selected</span>
+            <button id="clear-all" class="btn btn-ghost" style="font-size:0.7rem;padding:0.4rem 0.9rem;">
+              Clear All
+            </button>
+          </div>
+          <div class="preview-grid" id="preview-grid" aria-label="Selected files preview"></div>
+        </div>
+
+        <!-- Guest Form -->
+        <form id="upload-form" novalidate>
+          <div class="guest-form fade-up">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="guest-name">Your Name <span aria-hidden="true" style="color:var(--gold)">*</span></label>
+                <input class="form-input" type="text" id="guest-name" name="guest-name"
+                       placeholder="e.g. Sarah & Mike" autocomplete="name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="guest-email">Email (optional)</label>
+                <input class="form-input" type="email" id="guest-email" name="guest-email"
+                       placeholder="you@example.com" autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="guest-message">Leave a Message (optional)</label>
+              <textarea class="form-textarea" id="guest-message" name="guest-message"
+                        placeholder="Write a heartfelt note to the couple…"></textarea>
+            </div>
+          </div>
+
+          <!-- Upload Progress -->
+          <div class="upload-progress" id="upload-progress">
+            <div class="progress-label">
+              <span>Uploading your memories…</span>
+              <span id="progress-pct">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+
+          <!-- Submit Bar -->
+          <div class="submit-bar fade-up">
+            <p class="hint">Your memories will be shared privately with the couple.</p>
+            <button type="submit" class="btn btn-gold" id="submit-btn" disabled
+                    style="opacity:0.5;min-width:160px;">
+              Submit Memories
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="success-screen" role="status" aria-live="polite">
+      <div class="success-icon" aria-hidden="true">🥂</div>
+      <h2 class="success-title">Thank you, <span id="success-name"></span>!</h2>
+      <p class="success-msg">
+        Your <strong id="success-count"></strong> have been received. The couple will treasure every single one.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-gold" id="submit-again">Share More Memories</button>
+        <a href="registry.html" class="btn btn-outline">Browse the Registry →</a>
+        <a href="index.html" class="btn btn-ghost">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">JAN</div>
+    <p class="footer-copy">Made with love &nbsp;·&nbsp; <span data-couple-names>Alex &amp; Jordan</span></p>
+  </footer>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/upload.js"></script>
+</body>
+</html>
